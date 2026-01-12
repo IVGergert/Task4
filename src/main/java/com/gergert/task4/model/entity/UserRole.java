@@ -1,4 +1,4 @@
-package gergert.task4.model.entity;
+package com.gergert.task4.model.entity;
 
 public enum UserRole {
     ADMIN,

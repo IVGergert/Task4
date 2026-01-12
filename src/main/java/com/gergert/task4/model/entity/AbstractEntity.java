@@ -1,15 +1,15 @@
-package gergert.task4.model.entity;
+package com.gergert.task4.model.entity;
 
 import java.io.Serializable;
 
 public class AbstractEntity implements Cloneable, Serializable {
-    private int id;
+    private long id;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -23,6 +23,6 @@ public class AbstractEntity implements Cloneable, Serializable {
 
     @Override
     public int hashCode() {
-        return id;
+        return Long.hashCode(id);
     }
 }

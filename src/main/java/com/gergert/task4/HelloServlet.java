@@ -1,4 +1,4 @@
-package gergert.task4;
+package com.gergert.task4;
 
 import java.io.*;
 import jakarta.servlet.http.*;

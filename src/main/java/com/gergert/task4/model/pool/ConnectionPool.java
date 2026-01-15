@@ -109,9 +109,4 @@ public final class ConnectionPool {
             throw new RuntimeException("DB Connection failed", e);
         }
     }
-
-
-
-
-
 }

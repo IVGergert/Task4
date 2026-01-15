@@ -19,7 +19,6 @@ public final class ConnectionPool {
 
     private BlockingQueue<Connection> freeConnections;
     private BlockingQueue<Connection> givenAwayConnections;
-    private final AtomicBoolean closed = new AtomicBoolean(false);
 
     private String url;
     private String user;

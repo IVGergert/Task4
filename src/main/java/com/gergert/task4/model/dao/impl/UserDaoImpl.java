@@ -24,14 +24,13 @@ public class UserDaoImpl implements UserDao {
     private static final String SQL_FIND_BY_ID = "SELECT id, email, password, first_name, last_name, role, status, balance FROM users WHERE id = ?";
     private static final String SQL_FIND_BY_EMAIL = "SELECT id, email, password, first_name, last_name, role, status, balance FROM users WHERE email = ?";
     private static final String SQL_CREATE_USER = "INSERT INTO users (email, password, first_name, last_name, role, status, balance) VALUES (?, ?, ?, ?, ?, ?, ?)";
-    private static final String SQL_CHECK_EMAIL_EXISTS = "SELECT 1 FROM users WHERE email = ?";
 
     @Override
     public List<User> findAll() throws DaoException {
+        Connection connection = ConnectionPool.getInstance().getConnection();
         List<User> users = new ArrayList<>();
 
-        try (Connection connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(SQL_FIND_ALL);
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_FIND_ALL);
              ResultSet rs = preparedStatement.executeQuery()) {
 
             while (rs.next()) {
@@ -40,6 +39,8 @@ public class UserDaoImpl implements UserDao {
         } catch (SQLException e) {
             logger.error("Error finding all users {}", e);
             throw new DaoException("Error finding all users", e);
+        } finally {
+            ConnectionPool.getInstance().releaseConnection(connection);
         }
 
         return users;
@@ -47,8 +48,9 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public Optional<User> findUserById(long id) throws DaoException {
-        try (Connection connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(SQL_FIND_BY_ID)) {
+        Connection connection = ConnectionPool.getInstance().getConnection();
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_FIND_BY_ID)) {
 
             preparedStatement.setLong(1, id);
 
@@ -61,6 +63,8 @@ public class UserDaoImpl implements UserDao {
         } catch (SQLException e) {
             logger.error("Error finding user by id {}", id, e);
             throw new DaoException("Error finding user by id", e);
+        } finally {
+            ConnectionPool.getInstance().releaseConnection(connection);
         }
 
         return Optional.empty();
@@ -68,8 +72,9 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public Optional<User> findUserByEmail(String email) throws DaoException {
-        try (Connection connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(SQL_FIND_BY_EMAIL)) {
+        Connection connection = ConnectionPool.getInstance().getConnection();
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_FIND_BY_EMAIL)) {
 
             preparedStatement.setString(1, email);
 
@@ -86,13 +91,16 @@ public class UserDaoImpl implements UserDao {
         } catch (SQLException e) {
             logger.error("Error finding user by email {}", e.getMessage());
             throw new DaoException("Error finding user by email", e);
+        } finally {
+            ConnectionPool.getInstance().releaseConnection(connection);
         }
     }
 
     @Override
     public boolean createUser(User user) throws DaoException {
-        try (Connection connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(SQL_CREATE_USER)) {
+        Connection connection = ConnectionPool.getInstance().getConnection();
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_CREATE_USER)) {
 
             preparedStatement.setString(1, user.getEmail());
             preparedStatement.setString(2, user.getPassword());
@@ -105,6 +113,8 @@ public class UserDaoImpl implements UserDao {
         } catch (SQLException e) {
             logger.error("Error create user {}", e.getMessage());
             throw new DaoException("Error creating in DB", e);
+        } finally {
+            ConnectionPool.getInstance().releaseConnection(connection);
         }
     }
 }

@@ -1,6 +1,6 @@
 package com.gergert.task4.model.exception;
 
-public class DaoException extends Exception{
+public class DaoException extends Exception {
     public DaoException() {
     }
 

@@ -4,7 +4,6 @@ import com.gergert.task4.model.dao.UserDao;
 import com.gergert.task4.model.dao.mapper.impl.UserMapperImpl;
 import com.gergert.task4.model.entity.User;
 import com.gergert.task4.model.exception.DaoException;
-import com.gergert.task4.model.exception.ServiceException;
 import com.gergert.task4.model.pool.ConnectionPool;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -19,7 +18,7 @@ import java.util.Optional;
 
 public class UserDaoImpl implements UserDao {
     private static final Logger logger = LogManager.getLogger();
-    private static final UserMapperImpl mapper = new UserMapperImpl();
+    private final UserMapperImpl mapper = new UserMapperImpl();
 
     private static final String SQL_FIND_ALL = "SELECT id, email, password, first_name, last_name, role, status, balance FROM users";
     private static final String SQL_FIND_BY_ID = "SELECT id, email, password, first_name, last_name, role, status, balance FROM users WHERE id = ?";
@@ -39,7 +38,7 @@ public class UserDaoImpl implements UserDao {
                 users.add(mapper.map(rs));
             }
         } catch (SQLException e) {
-            logger.error("Exception in findAll method", e);
+            logger.error("Error finding all users {}", e);
             throw new DaoException("Error finding all users", e);
         }
 
@@ -60,7 +59,7 @@ public class UserDaoImpl implements UserDao {
             }
 
         } catch (SQLException e) {
-            logger.error("Exception in findUserById method", e);
+            logger.error("Error finding user by id {}", id, e);
             throw new DaoException("Error finding user by id", e);
         }
 
@@ -76,32 +75,17 @@ public class UserDaoImpl implements UserDao {
 
             try (ResultSet rs = preparedStatement.executeQuery()) {
                 if (rs.next()) {
+                    logger.debug("User with email {} founded", email);
                     return Optional.of(mapper.map(rs));
+                } else {
+                    logger.debug("User with email {} was not found ", email);
+                    return Optional.empty();
                 }
             }
 
         } catch (SQLException e) {
-            logger.error("Exception in findUserByEmail method", e);
+            logger.error("Error finding user by email {}", e.getMessage());
             throw new DaoException("Error finding user by email", e);
-        }
-
-        return Optional.empty();
-    }
-
-    @Override
-    public boolean emailExists(String email) throws DaoException {
-        try (Connection connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(SQL_CHECK_EMAIL_EXISTS)) {
-
-            preparedStatement.setString(1, email);
-
-            try (ResultSet rs = preparedStatement.executeQuery()) {
-                return rs.next();
-            }
-
-        } catch (SQLException e) {
-            logger.error("Exception in emailExists  method", e);
-            throw new DaoException("Error checking if email exists", e);
         }
     }
 
@@ -117,13 +101,10 @@ public class UserDaoImpl implements UserDao {
             preparedStatement.setString(5, user.getRole().name());
             preparedStatement.setString(6, user.getStatus().name());
             preparedStatement.setDouble(7, user.getBalance());
-
-            int row = preparedStatement.executeUpdate();
-            return row > 0;
-
+            return preparedStatement.executeUpdate() > 0;
         } catch (SQLException e) {
-            logger.error("Exception in createUser method", e);
-            throw new DaoException("Error creating user", e);
+            logger.error("Error create user {}", e.getMessage());
+            throw new DaoException("Error creating in DB", e);
         }
     }
 }

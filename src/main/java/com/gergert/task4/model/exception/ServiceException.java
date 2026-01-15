@@ -1,8 +1,9 @@
 package com.gergert.task4.model.exception;
 
 public class ServiceException extends Exception{
-    public ServiceException() {
-    }
+    public ServiceException() {}
+
+
 
     public ServiceException(String message) {
         super(message);
@@ -12,7 +13,5 @@ public class ServiceException extends Exception{
         super(message, cause);
     }
 
-    public ServiceException(Throwable cause) {
-        super(cause);
-    }
+    public ServiceException(Throwable cause) {super(cause);}
 }

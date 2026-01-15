@@ -1,6 +1,5 @@
 package com.gergert.task4.model.entity;
 
-import java.math.BigDecimal;
 import java.util.StringJoiner;
 
 public class User extends AbstractEntity{
@@ -85,7 +84,6 @@ public class User extends AbstractEntity{
     public String toString() {
         return new StringJoiner(", ", User.class.getSimpleName() + "[", "]")
                 .add("email='" + email + "'")
-                .add("password='" + password + "'")
                 .add("firstName='" + firstName + "'")
                 .add("lastName='" + lastName + "'")
                 .add("role=" + role)

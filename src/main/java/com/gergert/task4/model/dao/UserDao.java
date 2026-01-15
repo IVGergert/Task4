@@ -10,6 +10,5 @@ public interface UserDao {
     List<User> findAll() throws DaoException;
     Optional<User> findUserById(long id) throws DaoException;
     Optional<User> findUserByEmail(String email) throws DaoException;
-    boolean emailExists(String email) throws DaoException;
     boolean createUser(User user) throws DaoException;
 }

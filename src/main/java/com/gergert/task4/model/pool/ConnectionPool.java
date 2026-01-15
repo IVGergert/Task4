@@ -40,39 +40,6 @@ public final class ConnectionPool {
         initPool();
     }
 
-    private void loadProperties() {
-        Properties properties = new Properties();
-        try (InputStream inputStream = ConnectionPool.class.getClassLoader()
-                .getResourceAsStream("database.properties")) {
-            properties.load(inputStream);
-            this.url = properties.getProperty("db.url");
-            this.user = properties.getProperty("db.user");
-            this.password = properties.getProperty("db.password");
-            this.driver = properties.getProperty("db.driver");
-            this.poolSize = Integer.parseInt(properties.getProperty("db.pool.size"));
-        } catch (IOException e) {
-            logger.fatal("Error loading database.properties", e);
-            throw new RuntimeException("database.properties not found", e);
-        }
-    }
-
-    private void initPool() {
-        try {
-            Class.forName(driver);
-            freeConnections = new ArrayBlockingQueue<>(poolSize);
-            givenAwayConnections = new ArrayBlockingQueue<>(poolSize);
-
-            for (int i = 0; i < poolSize; i++) {
-                Connection connection = DriverManager.getConnection(url, user, password);
-                freeConnections.offer(connection);
-            }
-            logger.info("Connection Pool initialized with {} connections", poolSize);
-        } catch (ClassNotFoundException | SQLException e) {
-            logger.fatal("Error initializing connection pool", e);
-            throw new RuntimeException("DB Connection failed", e);
-        }
-    }
-
     public Connection getConnection() {
         Connection connection = null;
         try {
@@ -109,6 +76,39 @@ public final class ConnectionPool {
             }
         }
         logger.info("Connection Pool destroyed");
+    }
+
+    private void loadProperties() {
+        Properties properties = new Properties();
+        try (InputStream inputStream = ConnectionPool.class.getClassLoader()
+                .getResourceAsStream(CONFIG_FILE)) {
+            properties.load(inputStream);
+            this.url = properties.getProperty("db.url");
+            this.user = properties.getProperty("db.user");
+            this.password = properties.getProperty("db.password");
+            this.driver = properties.getProperty("db.driver");
+            this.poolSize = Integer.parseInt(properties.getProperty("db.pool.size"));
+        } catch (IOException e) {
+            logger.fatal("Error loading database.properties", e);
+            throw new RuntimeException("database.properties not found", e);
+        }
+    }
+
+    private void initPool() {
+        try {
+            Class.forName(driver);
+            freeConnections = new ArrayBlockingQueue<>(poolSize);
+            givenAwayConnections = new ArrayBlockingQueue<>(poolSize);
+
+            for (int i = 0; i < poolSize; i++) {
+                Connection connection = DriverManager.getConnection(url, user, password);
+                freeConnections.offer(connection);
+            }
+            logger.info("Connection Pool initialized with {} connections", poolSize);
+        } catch (ClassNotFoundException | SQLException e) {
+            logger.fatal("Error initializing connection pool", e);
+            throw new RuntimeException("DB Connection failed", e);
+        }
     }
 
 

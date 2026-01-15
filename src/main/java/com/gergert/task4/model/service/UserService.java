@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface UserService {
-    Optional<User> signIn (String email, String password) throws ServiceException;
-    boolean register(User user) throws ServiceException;
+    Optional<User> login(String email, String password) throws ServiceException;
+    boolean register(String email, String password, String firstName, String lastName) throws ServiceException;
     List<User> findAllUsers() throws ServiceException;
 }

@@ -21,7 +21,6 @@ public class UserDaoImpl implements UserDao {
     private final UserMapperImpl mapper = new UserMapperImpl();
 
     private static final String SQL_FIND_ALL = "SELECT id, email, password, first_name, last_name, role, status, balance FROM users";
-    private static final String SQL_FIND_BY_ID = "SELECT id, email, password, first_name, last_name, role, status, balance FROM users WHERE id = ?";
     private static final String SQL_FIND_BY_EMAIL = "SELECT id, email, password, first_name, last_name, role, status, balance FROM users WHERE email = ?";
     private static final String SQL_CREATE_USER = "INSERT INTO users (email, password, first_name, last_name, role, status, balance) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
@@ -37,37 +36,13 @@ public class UserDaoImpl implements UserDao {
                 users.add(mapper.map(rs));
             }
         } catch (SQLException e) {
-            logger.error("Error finding all users {}", e);
+            logger.error("DAO Error finding all users {}", e);
             throw new DaoException("Error finding all users", e);
         } finally {
             ConnectionPool.getInstance().releaseConnection(connection);
         }
 
         return users;
-    }
-
-    @Override
-    public Optional<User> findUserById(long id) throws DaoException {
-        Connection connection = ConnectionPool.getInstance().getConnection();
-
-        try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_FIND_BY_ID)) {
-
-            preparedStatement.setLong(1, id);
-
-            try (ResultSet rs = preparedStatement.executeQuery()){
-                if (rs.next()) {
-                    return Optional.of(mapper.map(rs));
-                }
-            }
-
-        } catch (SQLException e) {
-            logger.error("Error finding user by id {}", id, e);
-            throw new DaoException("Error finding user by id", e);
-        } finally {
-            ConnectionPool.getInstance().releaseConnection(connection);
-        }
-
-        return Optional.empty();
     }
 
     @Override
@@ -89,8 +64,8 @@ public class UserDaoImpl implements UserDao {
             }
 
         } catch (SQLException e) {
-            logger.error("Error finding user by email {}", e.getMessage());
-            throw new DaoException("Error finding user by email", e);
+            logger.error("database error finding user by email {}", email ,e);
+            throw new DaoException("Database error finding user by email", e);
         } finally {
             ConnectionPool.getInstance().releaseConnection(connection);
         }
@@ -111,7 +86,7 @@ public class UserDaoImpl implements UserDao {
             preparedStatement.setDouble(7, user.getBalance());
             return preparedStatement.executeUpdate() > 0;
         } catch (SQLException e) {
-            logger.error("Error create user {}", e.getMessage());
+            logger.error("database error create user email={}", user.getEmail(), e);
             throw new DaoException("Error creating in DB", e);
         } finally {
             ConnectionPool.getInstance().releaseConnection(connection);

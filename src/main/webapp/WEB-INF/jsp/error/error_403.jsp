@@ -4,6 +4,6 @@
     <title>Title</title>
 </head>
 <body>
-    <% response.sendRedirect(request.getContextPath() + "/controller?command=LOGIN"); %>
+
 </body>
 </html>

@@ -12,8 +12,7 @@ import java.util.Set;
 
 import static com.gergert.task4.controller.command.AttributeConstant.COMMAND;
 import static com.gergert.task4.controller.command.AttributeConstant.USER;
-import static com.gergert.task4.controller.command.PathConstant.CMD_LOGIN;
-import static com.gergert.task4.controller.command.PathConstant.LOGIN_PAGE;
+import static com.gergert.task4.controller.command.PathConstant.REDIRECT_LOGIN;
 
 @WebFilter(urlPatterns = "/controller")
 public class AuthFilter implements Filter {
@@ -45,7 +44,7 @@ public class AuthFilter implements Filter {
         boolean isGuestCommand = GUEST_COMMANDS.contains(commandName.toUpperCase());
 
         if (!isUserLoggedIn && !isGuestCommand) {
-            resp.sendRedirect(req.getContextPath() + CMD_LOGIN);
+            resp.sendError(HttpServletResponse.SC_FORBIDDEN);
             return;
         }
 

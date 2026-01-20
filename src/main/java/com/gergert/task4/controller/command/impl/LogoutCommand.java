@@ -23,6 +23,6 @@ public class LogoutCommand implements Command {
             session.invalidate();
         }
 
-        return new Router(CMD_LOGIN, REDIRECT);
+        return new Router(REDIRECT_LOGIN, REDIRECT);
     }
 }

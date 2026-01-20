@@ -19,10 +19,9 @@
         <location>/WEB-INF/jsp/error/error_403.jsp</location>
     </error-page>
 
-    <error-page>
-        <exception-type>java.lang.Throwable</exception-type>
-        <location>/WEB-INF/jsp/error/error_500.jsp</location>
-    </error-page>
+    <welcome-file-list>
+        <welcome-file>/WEB-INF/jsp/auth/login.jsp</welcome-file>
+    </welcome-file-list>
 
     <session-config>
         <session-timeout>30</session-timeout>

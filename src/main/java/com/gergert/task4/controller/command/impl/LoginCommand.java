@@ -47,9 +47,9 @@ public class LoginCommand implements Command {
             session.setAttribute(ROLE, user.getRole());
 
             if (user.getRole() == UserRole.ADMIN) {
-                return new Router(CMD_ADMIN, REDIRECT);
+                return new Router(REDIRECT_ADMIN, REDIRECT);
             } else {
-                return new Router(CMD_HOME, REDIRECT);
+                return new Router(REDIRECT_HOME, REDIRECT);
             }
         } else {
             logger.warn("Login failed for email: {}", email);

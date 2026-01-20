@@ -40,7 +40,7 @@ public class RegisterCommand implements Command {
 
         if (userService.register(email, password, firstName, lastName)) {
             logger.info("New user registered: {}", email);
-            return new Router(CMD_LOGIN, REDIRECT);
+            return new Router(REDIRECT_LOGIN, REDIRECT);
         } else {
             logger.warn("Registration failed. User exists: {}", email);
             request.setAttribute(ERROR_MSG, "User with this email already exists.");

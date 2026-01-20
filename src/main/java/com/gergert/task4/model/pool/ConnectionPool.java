@@ -11,7 +11,6 @@ import java.sql.SQLException;
 import java.util.Properties;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public final class ConnectionPool {
     private static final Logger logger = LogManager.getLogger();

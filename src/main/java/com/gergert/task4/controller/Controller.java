@@ -15,7 +15,6 @@ import org.apache.logging.log4j.Logger;
 import java.io.IOException;
 
 import static com.gergert.task4.controller.command.AttributeConstant.COMMAND;
-import static com.gergert.task4.controller.command.PathConstant.ERROR_500_PAGE;
 
 @WebServlet("/controller")
 public class Controller extends HttpServlet {
@@ -52,7 +51,7 @@ public class Controller extends HttpServlet {
             }
         } catch (ServiceException e) {
             logger.error("Service exception occurred", e);
-            request.getRequestDispatcher(ERROR_500_PAGE).forward(request, response);
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         }
     }
 }

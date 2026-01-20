@@ -51,7 +51,7 @@ public class Controller extends HttpServlet {
             }
         } catch (ServiceException e) {
             logger.error("Service exception occurred", e);
-            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            throw new ServletException(e);
         }
     }
 }

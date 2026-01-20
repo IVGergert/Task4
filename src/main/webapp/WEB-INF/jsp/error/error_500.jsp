@@ -5,16 +5,11 @@
     <title>500</title>
 </head>
 <body>
-    <h2>500 - Internal Server Error</h2>
-
-    <form action = "controller" name="command">
-
-    <p>Internal Server Error</p>
-
-    <p>
-        <a href="${pageContext.request.contextPath}/controller?command=GO_TO_LOGIN">Go to login</a>
-    </p>
-
-    </form>
+java.lang.Throwable
+Request from: ${pageContext.errorData.requestURI} is failed <br/>
+Servlet name: ${pageContext.errorData.servletName} <br/>
+Status code: ${pageContext.errorData.statusCode}<br/>
+Exception: ${pageContext.exception} <br/>
+<br/><br/><br/>
 </body>
 </html>

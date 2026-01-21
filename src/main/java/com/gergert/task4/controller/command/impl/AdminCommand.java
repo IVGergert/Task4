@@ -18,8 +18,8 @@ public class AdminCommand implements Command {
     private static final Logger logger = LogManager.getLogger();
     private final UserService userService;
 
-    public AdminCommand(UserService userServiceImpl) {
-        this.userService = userServiceImpl;
+    public AdminCommand(UserService userService) {
+        this.userService = userService;
     }
 
     @Override

@@ -11,6 +11,4 @@ public final class PathConstant {
     public static final String REDIRECT_LOGIN = "/controller?command=GO_TO_LOGIN";
     public static final String REDIRECT_HOME = "/controller?command=HOME_PAGE";
     public static final String REDIRECT_ADMIN = "/controller?command=ADMIN_PAGE";
-
-
 }

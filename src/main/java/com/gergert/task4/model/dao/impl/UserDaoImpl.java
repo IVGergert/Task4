@@ -3,6 +3,8 @@ package com.gergert.task4.model.dao.impl;
 import com.gergert.task4.model.dao.UserDao;
 import com.gergert.task4.model.dao.mapper.impl.UserMapperImpl;
 import com.gergert.task4.model.entity.User;
+import com.gergert.task4.model.entity.UserRole;
+import com.gergert.task4.model.entity.UserStatus;
 import com.gergert.task4.model.exception.DaoException;
 import com.gergert.task4.model.pool.ConnectionPool;
 import org.apache.logging.log4j.LogManager;
@@ -23,6 +25,9 @@ public class UserDaoImpl implements UserDao {
     private static final String SQL_FIND_ALL = "SELECT id, email, password, first_name, last_name, role, status, balance FROM users";
     private static final String SQL_FIND_BY_EMAIL = "SELECT id, email, password, first_name, last_name, role, status, balance FROM users WHERE email = ?";
     private static final String SQL_CREATE_USER = "INSERT INTO users (email, password, first_name, last_name, role, status, balance) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    private static final String SQL_DELETE_USER = "DELETE FROM users WHERE id = ?";
+    private static final String SQL_CHANGE_STATUS_USER = "UPDATE users SET status = ? WHERE id = ?";
+    private static final String SQL_CHANGE_ROLE_USER = "UPDATE users SET role = ? WHERE id = ?";
 
     @Override
     public List<User> findAll() throws DaoException {
@@ -76,7 +81,6 @@ public class UserDaoImpl implements UserDao {
         Connection connection = ConnectionPool.getInstance().getConnection();
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_CREATE_USER)) {
-
             preparedStatement.setString(1, user.getEmail());
             preparedStatement.setString(2, user.getPassword());
             preparedStatement.setString(3, user.getFirstName());
@@ -92,4 +96,53 @@ public class UserDaoImpl implements UserDao {
             ConnectionPool.getInstance().releaseConnection(connection);
         }
     }
+
+    @Override
+    public boolean deleteUser(long userId) throws DaoException {
+        Connection connection = ConnectionPool.getInstance().getConnection();
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_DELETE_USER)){
+            preparedStatement.setLong(1, userId);
+            return preparedStatement.executeUpdate() > 0;
+        } catch (SQLException e) {
+            logger.error("Database error deleting user id={}", userId, e);
+            throw new DaoException("Error deleting user", e);
+        } finally {
+            ConnectionPool.getInstance().releaseConnection(connection);
+        }
+    }
+
+    @Override
+    public boolean changeStatusUser(long userId, UserStatus status) throws DaoException {
+        Connection connection = ConnectionPool.getInstance().getConnection();
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_CHANGE_STATUS_USER)){
+            preparedStatement.setString(1, status.name());
+            preparedStatement.setLong(2, userId);
+            return preparedStatement.executeUpdate() > 0;
+        } catch (SQLException e) {
+            logger.error("Database error updating status for user id={}", userId, e);
+            throw new DaoException("Error updating user status", e);
+        } finally {
+            ConnectionPool.getInstance().releaseConnection(connection);
+        }
+    }
+
+    @Override
+    public boolean changeRoleUser(long userId, UserRole role) throws DaoException {
+        Connection connection = ConnectionPool.getInstance().getConnection();
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_CHANGE_ROLE_USER)){
+            preparedStatement.setString(1, role.name());
+            preparedStatement.setLong(2, userId);
+            return preparedStatement.executeUpdate() > 0;
+        } catch (SQLException e) {
+            logger.error("Database error updating role for user id={}", userId, e);
+            throw new DaoException("Error updating user role", e);
+        } finally {
+            ConnectionPool.getInstance().releaseConnection(connection);
+        }
+    }
+
+
 }

@@ -21,6 +21,4 @@ public class Router {
     public RouterType getRouteType() {
         return routerType;
     }
-
-
 }

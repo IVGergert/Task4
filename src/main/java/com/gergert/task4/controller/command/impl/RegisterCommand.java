@@ -38,15 +38,15 @@ public class RegisterCommand implements Command {
 
         logger.info("Attempting to register user: {}", email);
 
-        if (userService.register(email, password, firstName, lastName)) {
-            logger.info("New user registered: {}", email);
-            return new Router(REDIRECT_LOGIN, REDIRECT);
-        } else {
+        if (!userService.register(email, password, firstName, lastName)) {
             logger.warn("Registration failed. User exists: {}", email);
             request.setAttribute(ERROR_MSG, "User with this email already exists.");
             saveAttribute(request, email, firstName, lastName);
             return new Router(REGISTER_PAGE, FORWARD);
         }
+
+        logger.info("New user registered: {}", email);
+        return new Router(REDIRECT_LOGIN, REDIRECT);
     }
 
     private void saveAttribute(HttpServletRequest request ,String email, String firstName, String lastName){

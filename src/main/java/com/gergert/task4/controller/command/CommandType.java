@@ -12,7 +12,12 @@ public enum CommandType {
     GO_TO_REGISTER (new GoToRegisterCommand()),
 
     ADMIN_PAGE (new AdminCommand(UserServiceImpl.getInstance())),
-    HOME_PAGE (new UserCommand());
+    HOME_PAGE (new UserCommand()),
+
+    DELETE_USER(new DeleteUserCommand(UserServiceImpl.getInstance())),
+    BAN_USER(new BanUserCommand(UserServiceImpl.getInstance())),
+    UNBAN_USER(new UnbanUserCommand(UserServiceImpl.getInstance())),
+    CHANGE_ROLE(new ChangeRoleCommand(UserServiceImpl.getInstance()));
 
     private final Command command;
 

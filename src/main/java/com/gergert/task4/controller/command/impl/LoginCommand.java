@@ -37,25 +37,36 @@ public class LoginCommand implements Command {
         String email = request.getParameter(EMAIL);
         String password = request.getParameter(PASSWORD);
 
-        Optional<User> userOptional = userService.login(email, password);
+        try {
+            Optional<User> userOptional = userService.login(email, password);
 
-        if (userOptional.isPresent()) {
-            User user = userOptional.get();
+            if (userOptional.isPresent()) {
+                User user = userOptional.get();
 
-            HttpSession session = request.getSession(true);
-            session.setAttribute(USER, user);
-            session.setAttribute(ROLE, user.getRole());
+                HttpSession session = request.getSession(true);
+                session.setAttribute(USER, user);
+                session.setAttribute(ROLE, user.getRole());
 
-            if (user.getRole() == UserRole.ADMIN) {
-                return new Router(REDIRECT_ADMIN, REDIRECT);
+                if (user.getRole() == UserRole.ADMIN) {
+                    return new Router(REDIRECT_ADMIN, REDIRECT);
+                } else {
+                    return new Router(REDIRECT_HOME, REDIRECT);
+                }
             } else {
-                return new Router(REDIRECT_HOME, REDIRECT);
+                logger.warn("Login failed for email: {}", email);
+                request.setAttribute(ERROR_MSG, "Invalid email or password");
+                request.setAttribute(EMAIL, email);
+                return new Router(LOGIN_PAGE, FORWARD);
             }
-        } else {
-            logger.warn("Login failed for email: {}", email);
-            request.setAttribute(ERROR_MSG, "Invalid email or password");
-            request.setAttribute(EMAIL, email);
-            return new Router(LOGIN_PAGE, FORWARD);
+        } catch (ServiceException e) {
+            if ("is_blocked".equals(e.getMessage())){
+                logger.info("User {} tried to login but is banned", email);
+                request.setAttribute(ERROR_MSG, "Your account is blocked by administrator");
+                request.setAttribute(EMAIL, email);
+                return new Router(LOGIN_PAGE, FORWARD);
+            }
+
+            throw e;
         }
     }
 }

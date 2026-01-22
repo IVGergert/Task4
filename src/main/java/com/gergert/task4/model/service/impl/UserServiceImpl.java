@@ -21,10 +21,18 @@ public class UserServiceImpl implements UserService {
     private static final Logger logger = LogManager.getLogger();
     private static final UserService INSTANCE = new UserServiceImpl();
 
-    private final UserDao userDao = new UserDaoImpl();
-    private final UserFactory userFactory = new UserFactoryImpl();
+    private final UserDao userDao;
+
+    public UserServiceImpl(UserDao userDao, UserFactory userFactory) {
+        this.userDao = userDao;
+        this.userFactory = userFactory;
+    }
+
+    private final UserFactory userFactory;
 
     private UserServiceImpl() {
+        this.userDao = new UserDaoImpl();
+        this.userFactory = new UserFactoryImpl();
     }
 
     public static UserService getInstance() {

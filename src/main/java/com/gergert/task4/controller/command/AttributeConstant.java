@@ -1,6 +1,6 @@
 package com.gergert.task4.controller.command;
 
-public class AttributeConstant {
+public final class AttributeConstant {
     private AttributeConstant() {}
 
     public static final String EMAIL = "email";

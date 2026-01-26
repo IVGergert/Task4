@@ -6,6 +6,7 @@ import com.gergert.task4.model.exception.ServiceException;
 import com.gergert.task4.model.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 
+import static com.gergert.task4.controller.command.AttributeConstant.USER_ID;
 import static com.gergert.task4.controller.command.PathConstant.REDIRECT_ADMIN;
 import static com.gergert.task4.controller.command.Router.RouterType.REDIRECT;
 
@@ -18,7 +19,7 @@ public class BanUserCommand implements Command {
 
     @Override
     public Router execute(HttpServletRequest request) throws ServiceException {
-        String userId = request.getParameter("userId");
+        String userId = request.getParameter(USER_ID);
 
         if (userId != null){
             userService.banUser(Long.parseLong(userId));

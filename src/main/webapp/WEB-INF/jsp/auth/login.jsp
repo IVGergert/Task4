@@ -4,34 +4,61 @@
 <html>
 <head>
     <title>Login</title>
+    <style>
+        .container{
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin-top: 50px;
+        }
+
+        .form-group {
+            margin-bottom: 10px;
+        }
+
+        label {
+            display: inline-block;
+            width: 100px;
+            text-align: right;
+            margin-right: 5px;
+        }
+
+        input, button {
+            width: 200px;
+            box-sizing: border-box;
+        }
+    </style>
 </head>
 <body>
 
-<div class="container" style="text-align: center">
+    <div class="container">
 
-    <h2 style="text-align: center">Login</h2>
+        <h2>Login</h2>
 
-    <c:if test="${not empty error_msg}">
-        <div style="color:red">${error_msg}</div>
-    </c:if>
+        <c:if test="${not empty error_msg}">
+            <div style="color:red">${error_msg}</div>
+        </c:if>
 
-    <form action="${pageContext.request.contextPath}/controller" method="post">
+        <form action="${pageContext.request.contextPath}/controller" method="post">
 
-        <input type="hidden" name="command" value="login">
+            <input type="hidden" name="command" value="login">
 
-        <label>Email:</label>
-        <input type="text" name="email" value="${email}" required/><br/>
+            <div class="form-group">
+                <label>Email:</label>
+                <input type="text" name="email" value="${email}" required/>
+            </div>
 
-        <label>Password:</label>
-        <input type="password" name="password" required/><br/>
+            <div class="form-group">
+                <label>Password:</label>
+                <input type="password" name="password" required/>
+            </div>
 
-        <button type="submit">Sign in</button>
+            <button type="submit">Sign in</button>
+        </form>
 
-    </form>
+        <br/>
 
-    <br/>
+        <a href="${pageContext.request.contextPath}/controller?command=GO_TO_REGISTER">Register</a>
+    </div>
 
-    <a href="${pageContext.request.contextPath}/controller?command=GO_TO_REGISTER">Register</a>
-</div>
 </body>
 </html>

@@ -25,11 +25,6 @@
             background-color: #f2f2f2;
         }
 
-        button {
-            padding: 5px 10px;
-            margin: 2px;
-            cursor: pointer;
-        }
     </style>
 </head>
 <body>
@@ -65,17 +60,19 @@
                     <c:choose>
                         <c:when test="${user.id == sessionScope.user.id}">
                             <strong><c:out value="${user.role}"/></strong>
-                            <span style="color:gray; font-size:0.8em">(You)</span>
+                            <span>(You)</span>
                         </c:when>
                         <c:otherwise>
                             <form action="${pageContext.request.contextPath}/controller" method="post">
                                 <input type="hidden" name="command" value="CHANGE_ROLE"/>
                                 <input type="hidden" name="userId" value="${user.id}"/>
 
-                                <select name="newRole" onchange="this.form.submit()">
+                                <select name="newRole">
                                     <option value="USER" ${user.role == 'USER' ? 'selected' : ''}>USER</option>
                                     <option value="ADMIN" ${user.role == 'ADMIN' ? 'selected' : ''}>ADMIN</option>
                                 </select>
+
+                                <button type="submit" onclick="return confirm('Are you sure you want to change role?');">Save</button>
                             </form>
                         </c:otherwise>
                     </c:choose>
@@ -115,7 +112,7 @@
                     </c:if>
 
                     <c:if test="${user.role == 'ADMIN'}">
-                        <span style="color: grey">Admin cannot be deleted or blocked.</span>
+                        <span>Admin cannot be deleted or blocked.</span>
                     </c:if>
                 </td>
             </tr>

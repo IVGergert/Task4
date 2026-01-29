@@ -31,6 +31,7 @@ public class AuthFilter implements Filter {
 
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         HttpServletResponse resp = (HttpServletResponse) servletResponse;
+
         HttpSession session = req.getSession(false);
 
         String commandName = req.getParameter(COMMAND);

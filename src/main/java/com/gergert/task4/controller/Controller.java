@@ -42,12 +42,8 @@ public class Controller extends HttpServlet {
             Router router = command.execute(request);
 
             switch (router.getRouteType()) {
-                case FORWARD:
-                    request.getRequestDispatcher(router.getPath()).forward(request, response);
-                    break;
-                case REDIRECT:
-                    response.sendRedirect(request.getContextPath() + router.getPath());
-                    break;
+                case FORWARD -> request.getRequestDispatcher(router.getPath()).forward(request, response);
+                case REDIRECT -> response.sendRedirect(request.getContextPath() + router.getPath());
             }
         } catch (ServiceException e) {
             logger.error("Service exception occurred", e);

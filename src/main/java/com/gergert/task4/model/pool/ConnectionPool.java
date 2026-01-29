@@ -74,6 +74,9 @@ public final class ConnectionPool {
             }
         }
         logger.info("Connection Pool destroyed");
+
+
+        //добавить дерегитсрацию драйвера
     }
 
     private void loadProperties() {
@@ -88,7 +91,7 @@ public final class ConnectionPool {
             this.poolSize = Integer.parseInt(properties.getProperty("db.pool.size"));
         } catch (IOException e) {
             logger.fatal("Error loading database.properties", e);
-            throw new RuntimeException("database.properties not found", e);
+            throw new ExceptionInInitializerError("database.properties not found");
         }
     }
 
@@ -103,9 +106,9 @@ public final class ConnectionPool {
                 freeConnections.offer(connection);
             }
             logger.info("Connection Pool initialized with {} connections", poolSize);
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             logger.fatal("Error initializing connection pool", e);
-            throw new RuntimeException("DB Connection failed", e);
+            throw new ExceptionInInitializerError("DB Connection failed");
         }
     }
 }

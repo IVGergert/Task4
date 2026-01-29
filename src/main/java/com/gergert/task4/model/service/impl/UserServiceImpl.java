@@ -22,12 +22,6 @@ public class UserServiceImpl implements UserService {
     private static final UserService INSTANCE = new UserServiceImpl();
 
     private final UserDao userDao;
-
-    public UserServiceImpl(UserDao userDao, UserFactory userFactory) {
-        this.userDao = userDao;
-        this.userFactory = userFactory;
-    }
-
     private final UserFactory userFactory;
 
     private UserServiceImpl() {
@@ -37,6 +31,11 @@ public class UserServiceImpl implements UserService {
 
     public static UserService getInstance() {
         return INSTANCE;
+    }
+
+    public UserServiceImpl(UserDao userDao, UserFactory userFactory) {
+        this.userDao = userDao;
+        this.userFactory = userFactory;
     }
 
     @Override

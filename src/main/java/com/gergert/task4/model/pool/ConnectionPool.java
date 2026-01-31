@@ -6,8 +6,10 @@ import org.apache.logging.log4j.Logger;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
+import java.sql.Driver;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Enumeration;
 import java.util.Properties;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
@@ -42,7 +44,7 @@ public final class ConnectionPool {
         Connection connection = null;
         try {
             connection = freeConnections.take();
-            givenAwayConnections.offer(connection);
+            givenAwayConnections.put(connection);
         } catch (InterruptedException e) {
             logger.error("Error getting connection from pool", e);
             Thread.currentThread().interrupt();
@@ -69,14 +71,21 @@ public final class ConnectionPool {
                 if (conn != null) {
                     conn.close();
                 }
+
+                Enumeration<Driver> drivers = DriverManager.getDrivers();
+                while (drivers.hasMoreElements()) {
+                    Driver d = drivers.nextElement();
+                    try {
+                        DriverManager.deregisterDriver(d);
+                    } catch (SQLException e) {
+                        logger.warn("Error deregistering driver: {}", d, e);
+                    }
+                }
             } catch (SQLException e) {
                 logger.error("Error closing connection", e);
             }
         }
         logger.info("Connection Pool destroyed");
-
-
-        //добавить дерегитсрацию драйвера
     }
 
     private void loadProperties() {

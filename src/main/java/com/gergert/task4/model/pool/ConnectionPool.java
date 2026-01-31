@@ -71,20 +71,21 @@ public final class ConnectionPool {
                 if (conn != null) {
                     conn.close();
                 }
-
-                Enumeration<Driver> drivers = DriverManager.getDrivers();
-                while (drivers.hasMoreElements()) {
-                    Driver d = drivers.nextElement();
-                    try {
-                        DriverManager.deregisterDriver(d);
-                    } catch (SQLException e) {
-                        logger.warn("Error deregistering driver: {}", d, e);
-                    }
-                }
             } catch (SQLException e) {
                 logger.error("Error closing connection", e);
             }
         }
+
+        Enumeration<Driver> drivers = DriverManager.getDrivers();
+        while (drivers.hasMoreElements()) {
+            Driver d = drivers.nextElement();
+            try {
+                DriverManager.deregisterDriver(d);
+            } catch (SQLException e) {
+                logger.warn("Error deregistering driver: {}", d, e);
+            }
+        }
+
         logger.info("Connection Pool destroyed");
     }
 

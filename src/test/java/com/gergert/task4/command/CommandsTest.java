@@ -1,6 +1,5 @@
 package com.gergert.task4.command;
 
-import com.gergert.task4.controller.Controller;
 import com.gergert.task4.controller.command.Command;
 import com.gergert.task4.controller.command.Router;
 import com.gergert.task4.controller.command.impl.*;
@@ -18,7 +17,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.Optional;
 
 import static com.gergert.task4.controller.command.AttributeConstant.*;
-import static com.gergert.task4.controller.command.CommandType.GO_TO_LOGIN;
 import static com.gergert.task4.controller.command.PathConstant.*;
 import static com.gergert.task4.controller.command.Router.RouterType.REDIRECT;
 import static org.junit.jupiter.api.Assertions.assertEquals;

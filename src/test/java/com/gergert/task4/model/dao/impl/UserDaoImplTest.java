@@ -67,6 +67,10 @@ class UserDaoImplTest {
         when(resultSet.getString("email")).thenReturn("u1@test.com");
         when(resultSet.getString("role")).thenReturn("USER");
         when(resultSet.getString("status")).thenReturn("ACTIVE");
+        when(resultSet.getString("password")).thenReturn("somePass");
+        when(resultSet.getString("first_name")).thenReturn("Ivan");
+        when(resultSet.getString("last_name")).thenReturn("Ivanov");
+        when(resultSet.getDouble("balance")).thenReturn(0.0);
 
         List<User> users = userDao.findAll();
 

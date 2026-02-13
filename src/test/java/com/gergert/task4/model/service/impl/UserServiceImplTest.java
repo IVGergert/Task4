@@ -66,7 +66,7 @@ class UserServiceImplTest {
     }
 
     @Test
-    void loginWhenUserIsBanned() throws DaoException, ServiceException {
+    void loginWhenUserIsBanned() throws DaoException {
         String email = "banned@mail.com";
         String password = "123";
 

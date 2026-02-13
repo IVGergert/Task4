@@ -10,8 +10,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3ca25d5e-3ea5-4fdb-94bb-dc49094afbc8" name="Changes" comment="update structure project">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/log4j2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/log4j2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/log4j2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/gergert/task4/command/CommandsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/gergert/task4/command/CommandsTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/gergert/task4/command/ControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/gergert/task4/command/ControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/gergert/task4/model/dao/impl/UserDaoImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/gergert/task4/model/dao/impl/UserDaoImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/gergert/task4/model/service/impl/UserServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/gergert/task4/model/service/impl/UserServiceImplTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,65 +82,66 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Mian.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Test.executor&quot;: &quot;Run&quot;,
-    &quot;Application.TestForApplication.executor&quot;: &quot;Debug&quot;,
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;JUnit.CommandsTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ControllerTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PasswordEncryptorTest.checkPassword_ShouldReturnFalse_WhenPasswordIsWrong.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PasswordEncryptorTest.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.UserDaoImplTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserFactoryImplTest.createUser.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserFactoryImplTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserMapperImplTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserMapperImplTest.map.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserServiceImplTest.changeUserRoleInvalidString.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.UserServiceImplTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserServiceImplTest.login.executor&quot;: &quot;Run&quot;,
-    &quot;JavaScript Debug.signInPage.jsp.executor&quot;: &quot;Run&quot;,
-    &quot;JavaScript Debug.signUpPage.jsp.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
-    &quot;TomEE Server.Unnamed.executor&quot;: &quot;Debug&quot;,
-    &quot;Tomcat Server.Tomcat 11.0.15.executor&quot;: &quot;Debug&quot;,
-    &quot;Tomcat Server.Tomcat.executor&quot;: &quot;Debug&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;database.data.extractors.current.export.id&quot;: &quot;Comma-separated (CSV)_id&quot;,
-    &quot;database.data.extractors.current.id&quot;: &quot;Comma-separated (CSV)_id&quot;,
-    &quot;full.screen.before.presentation.mode&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Учеба/Innowise/Task4&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.46896553&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;copyright&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Mian.executor": "Run",
+    "Application.Test.executor": "Run",
+    "Application.TestForApplication.executor": "Debug",
+    "DefaultHtmlFileTemplate": "HTML File",
+    "JUnit.CommandsTest.executor": "Run",
+    "JUnit.ControllerTest.executor": "Run",
+    "JUnit.PasswordEncryptorTest.checkPassword_ShouldReturnFalse_WhenPasswordIsWrong.executor": "Run",
+    "JUnit.PasswordEncryptorTest.executor": "Debug",
+    "JUnit.UserDaoImplTest.executor": "Run",
+    "JUnit.UserDaoImplTest.findAll.executor": "Run",
+    "JUnit.UserFactoryImplTest.createUser.executor": "Run",
+    "JUnit.UserFactoryImplTest.executor": "Run",
+    "JUnit.UserMapperImplTest.executor": "Run",
+    "JUnit.UserMapperImplTest.map.executor": "Run",
+    "JUnit.UserServiceImplTest.changeUserRoleInvalidString.executor": "Debug",
+    "JUnit.UserServiceImplTest.executor": "Run",
+    "JUnit.UserServiceImplTest.login.executor": "Run",
+    "JavaScript Debug.signInPage.jsp.executor": "Run",
+    "JavaScript Debug.signUpPage.jsp.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "TomEE Server.Unnamed.executor": "Debug",
+    "Tomcat Server.Tomcat 11.0.15.executor": "Debug",
+    "Tomcat Server.Tomcat.executor": "Debug",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "database.data.extractors.current.export.id": "Comma-separated (CSV)_id",
+    "database.data.extractors.current.id": "Comma-separated (CSV)_id",
+    "full.screen.before.presentation.mode": "false",
+    "git-widget-placeholder": "main",
+    "go.import.settings.migrated": "true",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/Учеба/Innowise/Task4",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.46896553",
+    "settings.editor.selected.configurable": "copyright",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
     ],
-    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
-      &quot;Properties&quot;
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "Properties"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Учеба\Innowise\Task4\src\main\java\com\gergert\task4\util\constant" />
@@ -164,69 +171,9 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Tomcat Server.Tomcat">
-    <configuration name="CommandsTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Task4" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.gergert.task4.command.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.gergert.task4.command" />
-      <option name="MAIN_CLASS_NAME" value="com.gergert.task4.command.CommandsTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Task4" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.gergert.task4.command.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.gergert.task4.command" />
-      <option name="MAIN_CLASS_NAME" value="com.gergert.task4.command.ControllerTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PasswordEncryptorTest.checkPassword_ShouldReturnFalse_WhenPasswordIsWrong" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Task4" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.gergert.task4.util.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.gergert.task4.util" />
-      <option name="MAIN_CLASS_NAME" value="com.gergert.task4.util.PasswordEncryptorTest" />
-      <option name="METHOD_NAME" value="checkPassword_ShouldReturnFalse_WhenPasswordIsWrong" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="UserDaoImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Task4" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.gergert.task4.model.dao.impl.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.gergert.task4.model.dao.impl" />
-      <option name="MAIN_CLASS_NAME" value="com.gergert.task4.model.dao.impl.UserDaoImplTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager">
     <configuration name="Tomcat" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 11.0.15" ALTERNATIVE_JRE_ENABLED="false">
+      <option name="COMMON_VM_ARGUMENTS" value="-Dproject.logs=&quot;$PROJECT_DIR$/logs&quot;" />
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="Task4:war">
@@ -313,21 +260,6 @@
         </option>
       </method>
     </configuration>
-    <list>
-      <item itemvalue="JUnit.CommandsTest" />
-      <item itemvalue="JUnit.ControllerTest" />
-      <item itemvalue="JUnit.PasswordEncryptorTest.checkPassword_ShouldReturnFalse_WhenPasswordIsWrong" />
-      <item itemvalue="JUnit.UserDaoImplTest" />
-      <item itemvalue="Tomcat Server.Tomcat" />
-    </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="JUnit.PasswordEncryptorTest.checkPassword_ShouldReturnFalse_WhenPasswordIsWrong" />
-        <item itemvalue="JUnit.CommandsTest" />
-        <item itemvalue="JUnit.ControllerTest" />
-        <item itemvalue="JUnit.UserDaoImplTest" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -387,7 +319,7 @@
       <workItem from="1769870798241" duration="2287000" />
       <workItem from="1770223393958" duration="30000" />
       <workItem from="1770994528545" duration="2311000" />
-      <workItem from="1770996863685" duration="764000" />
+      <workItem from="1770996863685" duration="2885000" />
     </task>
     <task id="LOCAL-00001" summary="make Entity classes">
       <option name="closed" value="true" />
@@ -541,7 +473,15 @@
       <option name="project" value="LOCAL" />
       <updated>1770996599449</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="update structure project">
+      <option name="closed" value="true" />
+      <created>1770997714018</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1770997714018</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

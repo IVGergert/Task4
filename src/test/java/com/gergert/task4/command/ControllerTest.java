@@ -5,7 +5,6 @@ import com.gergert.task4.controller.command.Command;
 import com.gergert.task4.controller.command.CommandType;
 import com.gergert.task4.controller.command.Router;
 import jakarta.servlet.RequestDispatcher;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.junit.jupiter.api.Test;
@@ -14,7 +13,6 @@ import org.mockito.Mock;
 import org.mockito.MockedStatic;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.io.IOException;
 
 import static com.gergert.task4.controller.command.AttributeConstant.COMMAND;
 import static org.mockito.Mockito.*;
@@ -27,7 +25,7 @@ public class ControllerTest  extends Controller  {
     @Mock Command command;
 
     @Test
-    void doGet_ShouldForward_WhenRouterIsForward() throws ServletException, IOException {
+    void doGet_ShouldForward_WhenRouterIsForward(){
         try (MockedStatic<CommandType> factory = mockStatic(CommandType.class)) {
             factory.when(() -> CommandType.define("LOGIN")).thenReturn(command);
 
@@ -46,9 +44,7 @@ public class ControllerTest  extends Controller  {
     }
 
     @Test
-    void doPost_ShouldRedirect_WhenRouterIsRedirect() throws ServletException, IOException {
-        Controller controller = new Controller();
-
+    void doPost_ShouldRedirect_WhenRouterIsRedirect(){
         try (MockedStatic<CommandType> factory = mockStatic(CommandType.class)) {
             factory.when(() -> CommandType.define("LOGIN")).thenReturn(command);
 

@@ -8,10 +8,9 @@ target/
 *.iml
 *.ipr
 .gitignore
-idea/
+.idea/
 target/
 src/main/resources/database.properties
 src/main/resources/log4j2.xml
 logs/
 *.log
-*.log.gz

@@ -8,7 +8,7 @@ target/
 *.iml
 *.ipr
 .gitignore
-.idea/
-.logs/
-.target/
-.main/resources/
+idea/
+target/
+main/resources/
+logs

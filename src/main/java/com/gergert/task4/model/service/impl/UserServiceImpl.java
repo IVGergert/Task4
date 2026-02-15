@@ -24,13 +24,13 @@ public class UserServiceImpl implements UserService {
     private final UserDao userDao;
     private final UserFactory userFactory;
 
+    public static UserService getInstance() {
+        return INSTANCE;
+    }
+
     private UserServiceImpl() {
         this.userDao = new UserDaoImpl();
         this.userFactory = new UserFactoryImpl();
-    }
-
-    public static UserService getInstance() {
-        return INSTANCE;
     }
 
     public UserServiceImpl(UserDao userDao, UserFactory userFactory) {
